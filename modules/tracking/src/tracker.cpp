@@ -104,16 +104,13 @@ bool Tracker::update( const Mat& image, Rect2d& boundingBox )
   return updateImpl( image, boundingBox );
 }
 
-AlgorithmInfo* Tracker::info() const{
-    return 0;
-}
-
 Ptr<Tracker> Tracker::create( const String& trackerType )
 {
   BOILERPLATE_CODE("MIL",TrackerMIL);
   BOILERPLATE_CODE("BOOSTING",TrackerBoosting);
   BOILERPLATE_CODE("MEDIANFLOW",TrackerMedianFlow);
   BOILERPLATE_CODE("TLD",TrackerTLD);
+  BOILERPLATE_CODE("KCF",TrackerKCF);
   return Ptr<Tracker>();
 }
 

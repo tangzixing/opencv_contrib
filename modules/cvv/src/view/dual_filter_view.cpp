@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "opencv2/core/core.hpp"
+#include "opencv2/core.hpp"
 
 #include <QApplication>
 #include <QGridLayout>
@@ -31,7 +31,7 @@ namespace view
 
 // neuer Konstruktor
 DualFilterView::DualFilterView(std::array<cv::Mat, 2> images, QWidget *parent)
-    : FilterView{ parent }, rawImages_(images)
+    : FilterView( parent ), rawImages_(images)
 {
 	auto layout = util::make_unique<QHBoxLayout>();
 	auto imageLayout = util::make_unique<QHBoxLayout>();

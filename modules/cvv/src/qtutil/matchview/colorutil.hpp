@@ -1,11 +1,12 @@
 #ifndef CVVISUAL_COLOR_UTIL
 #define CVVISUAL_COLOR_UTIL
 
+#include <cstdint>
 #include <vector>
 
 #include <QColor>
 
-#include "opencv2/core/core.hpp"
+#include "opencv2/core.hpp"
 
 namespace cvv
 {

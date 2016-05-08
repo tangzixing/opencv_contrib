@@ -4,8 +4,7 @@
 #include <stdexcept>
 #include <thread>
 #include <functional>
-
-#include <opencv/highgui.h>
+#include <memory>
 
 #include <QDesktopServices>
 #include <QUrl>

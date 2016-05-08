@@ -47,6 +47,7 @@
 #include <string>
 #include <iostream>
 #include <stdint.h>
+#include "opencv2/core.hpp"
 
 namespace cv
 {
@@ -75,9 +76,25 @@ public:
   void read( const FileNode& fn );
   void write( FileStorage& fs ) const;
 
+  int getImageWidth() const
+  {
+    return resImWidth;
+  }
+  inline void setImageWidth(int val)
+  {
+    resImWidth = val;
+  }
+  int getImageHeight() const
+  {
+    return resImHeight;
+  }
+  void setImageHeight(int val)
+  {
+    resImHeight = val;
+  }
+
 protected:
-  bool computeSaliencyImpl( const InputArray image, OutputArray saliencyMap );
-  AlgorithmInfo* info() const;
+  bool computeSaliencyImpl( InputArray image, OutputArray saliencyMap );
   int resImWidth;
   int resImHeight;
 
@@ -111,6 +128,23 @@ public:
   */
   bool init();
 
+  int getImageWidth() const
+  {
+    return imageWidth;
+  }
+  inline void setImageWidth(int val)
+  {
+    imageWidth = val;
+  }
+  int getImageHeight() const
+  {
+    return imageHeight;
+  }
+  void setImageHeight(int val)
+  {
+    imageHeight = val;
+  }
+
 protected:
   /** @brief Performs all the operations and calls all internal functions necessary for the accomplishment of the
     Fast Self-tuning Background Subtraction Algorithm algorithm.
@@ -120,8 +154,7 @@ protected:
        The saliency map is given by a single *Mat* (one for each frame of an hypothetical video
         stream).
   */
-  bool computeSaliencyImpl( const InputArray image, OutputArray saliencyMap );
-  AlgorithmInfo* info() const;
+  bool computeSaliencyImpl( InputArray image, OutputArray saliencyMap );
 
 private:
 
@@ -200,6 +233,31 @@ public:
      */
   void setBBResDir( std::string resultsDir );
 
+  double getBase() const
+  {
+    return _base;
+  }
+  inline void setBase(double val)
+  {
+    _base = val;
+  }
+  int getNSS() const
+  {
+    return _NSS;
+  }
+  void setNSS(int val)
+  {
+    _NSS = val;
+  }
+  int getW() const
+  {
+    return _W;
+  }
+  void setW(int val)
+  {
+    _W = val;
+  }
+
 protected:
   /** @brief Performs all the operations and calls all internal functions necessary for the
   accomplishment of the Binarized normed gradients algorithm.
@@ -210,8 +268,7 @@ protected:
     specialized algorithm, the objectnessBoundingBox is a *vector\<Vec4i\>*. Each bounding box is
     represented by a *Vec4i* for (minX, minY, maxX, maxY).
      */
-  bool computeSaliencyImpl( const InputArray image, OutputArray objectnessBoundingBox );
-  AlgorithmInfo* info() const;
+  bool computeSaliencyImpl( InputArray image, OutputArray objectnessBoundingBox );
 
 private:
 
@@ -223,7 +280,7 @@ private:
     // For a W by H gradient magnitude map, find a W-7 by H-7 CV_32F matching score map
     Mat matchTemplate( const Mat &mag1u );
 
-    float dot( const int64_t tig1, const int64_t tig2, const int64_t tig4, const int64_t tig8 );
+    float dot( int64_t tig1, int64_t tig2, int64_t tig4, int64_t tig8 );
     void reconstruct( Mat &w );// For illustration purpose
 
   private:
